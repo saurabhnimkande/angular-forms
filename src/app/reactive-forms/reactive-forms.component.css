@@ -1,0 +1,28 @@
+.mainContainer {
+    display: flex;
+}
+.mainContainer > div {
+    width: 50%;
+}
+.fields {
+    margin-bottom : 1rem;
+}
+
+.fields > input {
+    width: 14rem;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+}
+
+.button > button {
+    background-color: purple;
+    border: none;
+    padding: 1rem;
+    width: 6rem;
+    color: white;
+    cursor: pointer;
+}
+.disabled {
+    opacity: 0.5;
+}

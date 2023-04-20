@@ -1,0 +1,45 @@
+<div class="mainContainer">
+  <p>Template Forms</p>
+  <form (ngSubmit)="onSubmit()">
+    <div class="fields">
+      <label for="carName">Car Name: </label>
+      <input
+        id="carName"
+        type="text"
+        [(ngModel)]="data.carName"
+        name="carName"
+      />
+    </div>
+
+    <div class="fields">
+      <label for="brand">Brand: </label>
+      <input
+        id="brand"
+        type="text"
+        [(ngModel)]="data.carBrand"
+        name="carBrand"
+      />
+    </div>
+
+    <div class="fields">
+      <label for="type">Car Types</label>
+      <select id="type" required [(ngModel)]="data.carType" name="carType">
+        <option *ngFor="let cars of carTypes" [value]="cars">{{ cars }}</option>
+      </select>
+    </div>
+
+  </form>
+
+  <div *ngIf="data?.carName">
+    <p>
+      Car Name : {{data.carName}}
+    </p>
+    <p>
+      Car Brand : {{data.carBrand}}
+    </p>
+    <p>
+      Car Type : {{data.carType}}
+    </p>
+    
+  </div>
+</div>
