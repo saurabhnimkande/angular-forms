@@ -1,45 +1,124 @@
 <div class="mainContainer">
-  <p>Template Forms</p>
-  <form (ngSubmit)="onSubmit()">
+  <p class="title">Template Driven Forms</p>
+  <form (ngSubmit)="onSubmit()" #profileForm="ngForm" novalidate>
     <div class="fields">
-      <label for="carName">Car Name: </label>
+      <div class="fieldsIcon">
+        <span class="material-symbols-outlined"> account_circle </span>
+      </div>
       <input
-        id="carName"
+        placeholder="First Name"
         type="text"
-        [(ngModel)]="data.carName"
-        name="carName"
+        name="firstName"
+        #firstName="ngModel"
+        class="form-control"
+        [(ngModel)]="data.firstName"
+        required
       />
+      <div
+        class="errorMessage"
+        *ngIf="
+          firstName.errors?.['required'] &&
+          (profileForm.submitted || firstName.touched)
+        "
+      >
+        <span class="material-symbols-outlined errorIcon"> warning </span>
+        {{ invalidFirstName }}
+      </div>
     </div>
 
     <div class="fields">
-      <label for="brand">Brand: </label>
+      <div class="fieldsIcon">
+        <span class="material-symbols-outlined"> account_circle </span>
+      </div>
       <input
-        id="brand"
+        id="lastName"
+        placeholder="Last Name"
         type="text"
-        [(ngModel)]="data.carBrand"
-        name="carBrand"
+        name="lastName"
+        #lastName="ngModel"
+        [(ngModel)]="data.lastName"
+        class="form-control"
+        required
       />
+      <div
+        class="errorMessage"
+        *ngIf="
+        lastName.errors?.['required'] &&
+        (profileForm.submitted || lastName.touched)
+        "
+      >
+        <span class="material-symbols-outlined errorIcon"> warning </span>
+        {{ invalidLastName }}
+      </div>
     </div>
 
     <div class="fields">
-      <label for="type">Car Types</label>
-      <select id="type" required [(ngModel)]="data.carType" name="carType">
-        <option *ngFor="let cars of carTypes" [value]="cars">{{ cars }}</option>
-      </select>
+      <div class="fieldsIcon">
+        <span class="material-symbols-outlined"> mail </span>
+      </div>
+      <input
+        id="email"
+        placeholder="Email"
+        type="email"
+        name="email"
+        #email="ngModel"
+        [(ngModel)]="data.email"
+        class="form-control"
+        required
+        email
+      />
+      <div
+        class="errorMessage"
+        *ngIf="
+        (email.errors?.['required'] || email.errors?.['email']) &&
+        (profileForm.submitted || email.touched)
+        "
+      >
+        <span class="material-symbols-outlined errorIcon"> warning </span>
+        {{ invalidEmail }}
+      </div>
     </div>
 
+    <div class="fields">
+      <div class="fieldsIcon">
+        <span class="material-symbols-outlined"> key </span>
+      </div>
+      <input
+        id="password"
+        placeholder="Password"
+        type="password"
+        name="password"
+        #password="ngModel"
+        [(ngModel)]="data.password"
+        class="form-control"
+        minlength="8"
+        required
+      />
+      <div
+        class="errorMessage"
+        *ngIf="
+        (password.errors?.['required'] || password.errors?.['minlength']) &&
+        (profileForm.submitted || password.touched)
+        "
+      >
+        <span class="material-symbols-outlined errorIcon"> warning </span>
+        {{ invalidPassword }}
+      </div>
+    </div>
+
+    <div class="button">
+      <button
+        type="submit"
+        [disabled]="!profileForm.valid"
+        [ngClass]="{ disabled: !profileForm.valid }"
+      >
+        <span class="material-symbols-outlined signIn"> login </span>Sign In
+      </button>
+    </div>
   </form>
-
-  <div *ngIf="data?.carName">
-    <p>
-      Car Name : {{data.carName}}
-    </p>
-    <p>
-      Car Brand : {{data.carBrand}}
-    </p>
-    <p>
-      Car Type : {{data.carType}}
-    </p>
-    
+  <div *ngIf="this.submitted">
+    <p>First Name : {{ data.firstName }}</p>
+    <p>Last Name : {{ data.lastName }}</p>
+    <p>email : {{ data.email }}</p>
   </div>
 </div>

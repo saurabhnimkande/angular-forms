@@ -1,0 +1,13 @@
+.app-main-container {
+    background-image: url("../assets/background.jpg");
+    height: 100vh;
+    background-size: cover;
+    width: 100vw;
+    display: flex;
+}
+
+.app-main-container > div {
+ width: 50%;
+ margin-left: 10%;
+ margin-top: 5%;
+}

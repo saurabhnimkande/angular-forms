@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder , Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -7,31 +7,24 @@ import { FormGroup, FormControl, FormBuilder , Validators} from '@angular/forms'
   styleUrls: ['./reactive-forms.component.css'],
 })
 export class ReactiveFormsComponent {
+  profileFormData = { firstName: '', lastName: '', email: '', password: '' };
 
-  constructor(private fb: FormBuilder) {};
-
-  profileFormData= {firstName:"",lastName:"",email:"",password:""};
-  profileBuilderData = {firstName:"",lastName:"",email:"",password:""}
+  invalidFirstName = 'Please provide first name';
+  invalidLastName = 'Please provide last name';
+  invalidEmail = 'Please provide valid email';
+  invalidPassword = 'Please provide password';
 
   profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
   });
-
-  profileBuilder = this.fb.group({
-    firstName: ["", Validators.required],
-    lastName:["", Validators.required],
-    email:["", [Validators.required, Validators.email]],
-    password:["", [Validators.required, Validators.minLength(8)]],
-  })
 
   onSubmit(form: FormGroup) {
     this.profileFormData = form.value;
   }
-  onSubmitProfileBuilder(form : FormGroup) {
-    console.log('form:', form);
-    this.profileBuilderData = form.value;
-  } 
 }

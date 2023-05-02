@@ -1,23 +1,76 @@
 .mainContainer {
-    padding-top: 2rem;
+  background: rgba(227, 227, 227, 0.334);
+  backdrop-filter: saturate(180%) blur(3px);
+  padding: 3rem;
+  border-radius: 20px;
+  width: max-content;
 }
 
 .fields {
-    margin-bottom : 1rem;
+  margin-bottom: 1rem;
 }
 
 .fields > input {
-    width: 14rem;
-    border: none;
-    border-bottom: 1px solid black;
-    outline: none;
+  width: 17rem;
+  height: 35px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding-left: 15px;
+  position: relative;
+  left: -8px;
 }
 
+.button {
+  margin-top: 2rem;
+}
 .button > button {
-    background-color: purple;
-    border: none;
-    padding: 1rem;
-    width: 6rem;
-    color: white;
-    cursor: pointer;
+  background-color: rgb(111 17 245);
+  border: none;
+  width: 20rem;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  padding-bottom: 0.7rem;
+  border-radius: 5px;
+}
+
+.signIn {
+  position: relative;
+  top: 7px;
+  left: -4px;
+}
+.disabled {
+  opacity: 0.5;
+}
+
+.fieldsIcon {
+  display: inline-block;
+  background-color: white;
+  height: 37px;
+  width: 38px;
+  position: relative;
+  top: 7.5px;
+  border-radius: 10px 0px 0px 10px;
+}
+.fieldsIcon > span {
+  margin-top: 6px;
+  margin-left: 5px;
+  color: rgba(103, 102, 102, 0.693);
+}
+
+.errorIcon {
+  position: relative;
+  top: 5px;
+}
+
+.errorMessage {
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: rgb(111 17 245);
 }

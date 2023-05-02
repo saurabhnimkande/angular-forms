@@ -1,131 +1,111 @@
-Reactive Forms
 <div class="mainContainer">
-  <div>
-    <p>Using Form Control and Form Group</p>
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm)">
-      <div class="fields">
-        <label for="first-name">First Name: </label>
-        <input id="first-name" type="text" formControlName="firstName" />
+  <p class="title">Reactive Forms</p>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm)">
+    <div class="fields">
+      <div class="fieldsIcon">
+        <span class="material-symbols-outlined"> account_circle </span>
       </div>
-
-      <div class="fields">
-        <label for="last-name">Last Name: </label>
-        <input id="last-name" type="text" formControlName="lastName" />
+      <input
+        id="first-name-builder"
+        placeholder="First Name"
+        type="text"
+        formControlName="firstName"
+      />
+      <div
+        class="errorMessage"
+        *ngIf="
+          profileForm?.get('firstName')?.invalid &&
+          (profileForm?.get('firstName')?.dirty ||
+            profileForm?.get('firstName')?.touched)
+        "
+      >
+        <span class="material-symbols-outlined errorIcon"> warning </span>
+        {{ invalidFirstName }}
       </div>
-
-      <div class="fields">
-        <label for="email">Email: </label>
-        <input id="email" type="email" formControlName="email" />
-      </div>
-
-      <div class="fields">
-        <label for="password">Password: </label>
-        <input id="password" type="password" formControlName="password" />
-      </div>
-
-      <div class="button">
-        <button type="submit">Submit</button>
-      </div>
-    </form>
-    <div *ngIf="profileFormData?.firstName">
-      <p>
-        First Name : {{profileFormData.firstName}}
-      </p>
-      <p>
-        Last Name : {{profileFormData.lastName}}
-      </p>
-      <p>
-        email : {{profileFormData.email}}
-      </p>
-      
     </div>
-  </div>
 
-  <div>
-    <p>Using Form Builder with validation</p>
-    <form
-      [formGroup]="profileBuilder"
-      (ngSubmit)="onSubmitProfileBuilder(profileBuilder)"
-    >
-      <div class="fields">
-        <label for="first-name-builder">First Name: </label>
-        <input
-          id="first-name-builder"
-          type="text"
-          formControlName="firstName"
-        />
-        <div
-          *ngIf="
-            profileBuilder?.get('firstName')?.invalid &&
-            (profileBuilder?.get('firstName')?.dirty ||
-              profileBuilder?.get('firstName')?.touched)
-          "
-        >
-          Please provide first name.
-        </div>
+    <div class="fields">
+      <div class="fieldsIcon">
+        <span class="material-symbols-outlined"> account_circle </span>
       </div>
-
-      <div class="fields">
-        <label for="last-name-builder">Last Name: </label>
-        <input id="last-name-builder" type="text" formControlName="lastName" />
-        <div
-          *ngIf="
-            profileBuilder?.get('lastName')?.invalid &&
-            (profileBuilder?.get('lastName')?.dirty ||
-              profileBuilder?.get('lastName')?.touched)
-          "
-        >
-          Please provide last name.
-        </div>
+      <input
+        id="last-name-builder"
+        placeholder="Last Name"
+        type="text"
+        formControlName="lastName"
+      />
+      <div
+        class="errorMessage"
+        *ngIf="
+          profileForm?.get('lastName')?.invalid &&
+          (profileForm?.get('lastName')?.dirty ||
+            profileForm?.get('lastName')?.touched)
+        "
+      >
+        <span class="material-symbols-outlined errorIcon"> warning </span>
+        {{ invalidLastName }}
       </div>
-
-      <div class="fields">
-        <label for="email-builder">Email: </label>
-        <input id="email-builder" type="email" formControlName="email" />
-        <div
-          *ngIf="
-            profileBuilder?.get('email')?.invalid &&
-            (profileBuilder?.get('email')?.dirty ||
-              profileBuilder?.get('email')?.touched)
-          "
-        >
-          Please provide email.
-        </div>
-      </div>
-
-      <div class="fields">
-        <label for="password-builder">Password: </label>
-        <input
-          id="password-builder"
-          type="password"
-          formControlName="password"
-        />
-        <div
-          *ngIf="
-            profileBuilder?.get('password')?.invalid &&
-            (profileBuilder?.get('password')?.dirty ||
-              profileBuilder?.get('password')?.touched)
-          "
-        >
-          Please provide password.
-        </div>
-      </div>
-
-      <div class="button">
-        <button type="submit" [disabled]="!profileBuilder.valid" [ngClass]="{'disabled' : !profileBuilder.valid}">Submit</button>
-      </div>
-    </form>
-    <div *ngIf="profileBuilderData?.firstName">
-      <p>
-        First Name : {{profileBuilderData.firstName}}
-      </p>
-      <p>
-        Last Name : {{profileBuilderData.lastName}}
-      </p>
-      <p>
-        email : {{profileBuilderData.email}}
-      </p>
-      
     </div>
+
+    <div class="fields">
+      <div class="fieldsIcon">
+        <span class="material-symbols-outlined"> mail </span>
+      </div>
+      <input
+        id="email-builder"
+        placeholder="Email"
+        type="email"
+        formControlName="email"
+      />
+      <div
+        class="errorMessage"
+        *ngIf="
+          profileForm?.get('email')?.invalid &&
+          (profileForm?.get('email')?.dirty ||
+            profileForm?.get('email')?.touched)
+        "
+      >
+        <span class="material-symbols-outlined errorIcon"> warning </span>
+        {{ invalidEmail }}
+      </div>
+    </div>
+
+    <div class="fields">
+      <div class="fieldsIcon">
+        <span class="material-symbols-outlined"> key </span>
+      </div>
+      <input
+        id="password-builder"
+        placeholder="Password"
+        type="password"
+        formControlName="password"
+      />
+      <div
+        class="errorMessage"
+        *ngIf="
+          profileForm?.get('password')?.invalid &&
+          (profileForm?.get('password')?.dirty ||
+            profileForm?.get('password')?.touched)
+        "
+      >
+        <span class="material-symbols-outlined errorIcon"> warning </span>
+        {{ invalidPassword }}
+      </div>
+    </div>
+
+    <div class="button">
+      <button
+        type="submit"
+        [disabled]="!profileForm.valid"
+        [ngClass]="{ disabled: !profileForm.valid }"
+      >
+        <span class="material-symbols-outlined signIn"> login </span>Sign In
+      </button>
+    </div>
+  </form>
+  <div *ngIf="profileFormData?.firstName">
+    <p>First Name : {{ profileFormData.firstName }}</p>
+    <p>Last Name : {{ profileFormData.lastName }}</p>
+    <p>email : {{ profileFormData.email }}</p>
   </div>
 </div>
